@@ -17,6 +17,7 @@ function increment() {
   <h1>Home</h1>
   <nav>
     <RouterLink to="/about">Go to About</RouterLink>
+    <RouterLink to="/login">Go to Login</RouterLink>
   </nav>
   <div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-md flex items-center space-x-4">
     <form @submit.prevent="increment">
