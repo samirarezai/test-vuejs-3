@@ -1,30 +1,42 @@
-<script setup lang="ts">
-import { ref } from 'vue'
-const count = ref(0)
+<script setup type="ts">
+import {useQueryClient, useQuery, useMutation} from '@tanstack/vue-query'
 
-function increment() {
-  // .value is needed in JavaScript
-  count.value++
+// Access QueryClient instance
+const queryClient = useQueryClient()
+
+// Query
+const {isPending, isError, data, error} = useQuery({
+  queryKey: ['todos'],
+  queryFn: () => [{
+    title: 'string', id: 1
+  }],
+})
+
+// Mutation
+const mutation = useMutation({
+  mutationFn: () => ({
+    title: 'string', id: 1
+  }),
+  onSuccess: () => {
+    // Invalidate and refetch
+    queryClient.invalidateQueries({queryKey: ['todos']})
+  },
+})
+
+function onButtonClick() {
+  mutation.mutate({
+    id: Date.now(),
+    title: 'Do Laundry',
+  })
 }
-
 </script>
 
 <template>
-
-  <h1>About</h1>
-  <nav>
-    <RouterLink to="/">Go to Home</RouterLink>
-  </nav>
-  <div class="card">
-    <button @click="increment">
-      {{ count }}
-    </button>
-  </div>
-
+  <span v-if="isPending">Loading...</span>
+  <span v-else-if="isError">Error: {{ error.message }}</span>
+  <!-- We can assume by this point that `isSuccess === true` -->
+  <ul v-else>
+    <li v-for="todo in data" :key="todo.id">{{ todo.title }}</li>
+  </ul>
+  <button @click="onButtonClick">Add Todo</button>
 </template>
-
-<style scoped>
-.read-the-docs {
-  color: #888;
-}
-</style>

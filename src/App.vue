@@ -1,9 +1,13 @@
 <script setup lang="ts">
+import { VueQueryDevtools } from '@tanstack/vue-query-devtools'
+// Access QueryClient instance
+
 
 </script>
 
 <template>
   <RouterView />
+  <VueQueryDevtools />
 </template>
 
 <style scoped>
