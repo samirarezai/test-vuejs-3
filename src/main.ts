@@ -2,6 +2,7 @@ import {createApp} from 'vue'
 import App from './App.vue'
 import {createRouter, createWebHistory} from "vue-router";
 import './style.css'
+import { VueQueryPlugin } from '@tanstack/vue-query'
 import Home from 'pages/Home.vue';
 import About from "pages/About.vue";
 import Login from "pages/Login.vue";
@@ -31,4 +32,5 @@ const vuetify = createVuetify({
 createApp(App)
     .use(router)
     .use(vuetify)
+    .use(VueQueryPlugin)
     .mount('#app')
