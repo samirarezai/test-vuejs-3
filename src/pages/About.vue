@@ -1,6 +1,7 @@
 <script setup type="ts">
 import {useQueryClient, useQuery, useMutation} from '@tanstack/vue-query'
-
+// import ButtonEX from "components/ButtonEX.vue"
+import ButtonEX from "../components/ButtonEX.vue"
 // Access QueryClient instance
 const queryClient = useQueryClient()
 
@@ -38,5 +39,6 @@ function onButtonClick() {
   <ul v-else>
     <li v-for="todo in data" :key="todo.id">{{ todo.title }}</li>
   </ul>
-  <button @click="onButtonClick">Add Todo</button>
+<!--  <ButtonEX @click="onButtonClick">Add Todo</ButtonEX>-->
+  <ButtonEX>hello</ButtonEX>
 </template>
