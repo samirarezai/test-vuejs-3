@@ -6,11 +6,15 @@ import ButtonEX from "../components/ButtonEX.vue"
 const queryClient = useQueryClient()
 
 // Query
-const {isPending, isError, data, error} = useQuery({
+const {isLoading, isError, data, error} = useQuery({
   queryKey: ['todos'],
-  queryFn: () => [{
-    title: 'string', id: 1
-  }],
+  queryFn: async () => {
+    const response = await fetch('https://jsonplaceholder.typicode.com/todos');
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  },
 })
 
 // Mutation
@@ -33,12 +37,20 @@ function onButtonClick() {
 </script>
 
 <template>
-  <span v-if="isPending">Loading...</span>
-  <span v-else-if="isError">Error: {{ error.message }}</span>
-  <!-- We can assume by this point that `isSuccess === true` -->
-  <ul v-else>
-    <li v-for="todo in data" :key="todo.id">{{ todo.title }}</li>
+  <h2 class="text-2xl p-2">To dos</h2>
+  <span v-if="isError">Error: {{ error.message }}</span>
+  <v-skeleton-loader
+      v-else
+      :loading="isLoading"
+      type="list-item-two-line"
+  >
+  <v-card >
+  <ul>
+    <li v-for="todo in data" :key="todo.id">
+      <v-card :text="todo.title" variant="tonal" class="inline-block m-3"/>
+    </li>
   </ul>
-<!--  <ButtonEX @click="onButtonClick">Add Todo</ButtonEX>-->
-  <ButtonEX>hello</ButtonEX>
+  </v-card>
+  </v-skeleton-loader>
+
 </template>
