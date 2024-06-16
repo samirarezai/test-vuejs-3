@@ -38,7 +38,9 @@ const {isLoading, isError, data, error} = useQuery({
       <v-row justify="space-around">
         <v-col
             v-for="todo in data" :key="todo.id"
-            cols="4"
+            cols="12"
+            sm="6"
+            lg="4"
         >
           <v-card v-if="textInput && todo.title.includes(textInput)" variant="tonal" class="inline-block m-3">
               <span class="inline-block p-2" v-html="todo.title.replace(new RegExp(`${textInput.trim()}`, 'gi') , `<mark>${textInput}</mark>`)"></span>
