@@ -1,32 +1,21 @@
 <script setup lang="ts">
-import {Ref, ref} from 'vue'
-
-const count: Ref<number> = ref(0)
-const name: Ref<string> = ref("")
-
-function increment() {
-  // .value is needed in JavaScript
-  count.value++
-  console.log(name.value)
-}
-
 </script>
 
 <template>
-  <h2 class="text-2xl p-2">Home</h2>
-  <nav>
+  <div>
 
-    <RouterLink to="/about" class="block mb-3">
-      <v-btn block>Go to About</v-btn>
-    </RouterLink>
-    <RouterLink to="/login">
-      <v-btn block>Go to Login</v-btn>
-    </RouterLink>
+  </div>
+  <v-container class="">
+    <v-row no-gutters justify="center" align="center" class="min-h-[600px]">
+      <v-col
+          cols="12"
+          sm="6"
 
-  </nav>
-  <button @click="increment">add</button>
-  <p>
-    result: {{ count }}
-  </p>
+      >
+    <h1 class="text-4xl font-bold mb-6">Welcome to My Vue.js App</h1>
+    <p class="text-lg">This is a simple home page built with Vue.js, Tailwind CSS, and Vuetify.</p>
+    <img src="../assets/images/cat.png" alt="banner" width="640" class="max-w-64 inline mt-12">
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
-
