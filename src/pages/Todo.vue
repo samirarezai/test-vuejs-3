@@ -1,10 +1,8 @@
 <script setup type="ts">
-import {useQueryClient, useQuery, useMutation} from '@tanstack/vue-query'
-// import ButtonEX from "components/ButtonEX.vue"
-import ButtonEX from "../components/ButtonEX.vue"
-// Access QueryClient instance
-// const queryClient = useQueryClient()
+import {useQuery} from '@tanstack/vue-query'
+import {ref} from "vue";
 
+const textInput = ref('');
 // Query
 const {isLoading, isError, data, error} = useQuery({
   queryKey: ['todos'],
@@ -17,30 +15,19 @@ const {isLoading, isError, data, error} = useQuery({
   },
 })
 
-// Mutation
-// const mutation = useMutation({
-//   mutationFn: () => ({
-//     title: 'string', id: 1
-//   }),
-//   onSuccess: () => {
-//     // Invalidate and refetch
-//     queryClient.invalidateQueries({queryKey: ['todos']})
-//   },
-// })
-
-// function onButtonClick() {
-//   mutation.mutate({
-//     id: Date.now(),
-//     title: 'Do Laundry',
-//   })
-// }
 </script>
 
 <template>
 
   <h1 class="text-4xl font-bold mb-6">To dos</h1>
   <p class="text-lg mb-6">This is a simple home page built with Vue.js, Tailwind CSS, and Vuetify.</p>
-  <v-text-field placeholder="Search your text here"></v-text-field>
+
+  <v-text-field placeholder="Search your text here" v-model="textInput">
+    <!--    <template #append>-->
+    <!--      <v-btn @click="handleSearch">Search</v-btn>-->
+    <!--    </template>-->
+  </v-text-field>
+
   <span v-if="isError">Error: {{ error.message }}</span>
   <v-skeleton-loader
       v-else
@@ -53,7 +40,12 @@ const {isLoading, isError, data, error} = useQuery({
             v-for="todo in data" :key="todo.id"
             cols="4"
         >
-          <v-card :text="todo.title" variant="tonal" class="inline-block m-3"/>
+          <v-card v-if="textInput && todo.title.includes(textInput)" variant="tonal" class="inline-block m-3">
+              <span v-html="todo.title.replace(new RegExp(`${textInput.trim()}`, 'gi') , `<mark>${textInput}</mark>`)"></span>
+          </v-card>
+          <v-card v-else variant="tonal" class="inline-block m-3">
+            <span class="inline-block p-2">{{ todo.title }}</span>
+          </v-card>
         </v-col>
       </v-row>
     </v-card>
