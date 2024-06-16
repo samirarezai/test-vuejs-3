@@ -41,7 +41,7 @@ const {isLoading, isError, data, error} = useQuery({
             cols="4"
         >
           <v-card v-if="textInput && todo.title.includes(textInput)" variant="tonal" class="inline-block m-3">
-              <span v-html="todo.title.replace(new RegExp(`${textInput.trim()}`, 'gi') , `<mark>${textInput}</mark>`)"></span>
+              <span class="inline-block p-2" v-html="todo.title.replace(new RegExp(`${textInput.trim()}`, 'gi') , `<mark>${textInput}</mark>`)"></span>
           </v-card>
           <v-card v-else variant="tonal" class="inline-block m-3">
             <span class="inline-block p-2">{{ todo.title }}</span>
