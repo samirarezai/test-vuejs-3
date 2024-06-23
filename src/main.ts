@@ -10,6 +10,7 @@ import Home from 'pages/Home.vue';
 import Login from "pages/Login.vue";
 import Todo from "pages/Todo.vue";
 import Library from "pages/Library.vue";
+import TodoList from "pages/TodoList.vue";
 
 
 const router = createRouter({
@@ -26,6 +27,9 @@ const router = createRouter({
                 },
                 {
                     path: '/library', name: 'Library', component: Library
+                },
+                {
+                    path: '/todo-list', name: 'Todo List', component: TodoList
                 }
             ]
 
