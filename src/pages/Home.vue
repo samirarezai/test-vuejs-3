@@ -2,9 +2,6 @@
 </script>
 
 <template>
-  <div>
-
-  </div>
   <v-container class="">
     <v-row no-gutters justify="center" align="center" class="min-h-[600px]">
       <v-col
