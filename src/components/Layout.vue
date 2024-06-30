@@ -10,6 +10,7 @@
         <v-btn  to="/login">Login</v-btn>
         <v-btn  to="/library">Library</v-btn>
         <v-btn  to="/todo-list">To do List</v-btn>
+        <v-btn  to="/practice">Practice</v-btn>
       </v-app-bar>
       <v-main>
         <v-container class="text-center pt-12">
