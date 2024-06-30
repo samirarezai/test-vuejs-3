@@ -26,7 +26,7 @@ counter.value = 1
 </script>
 
 <template>
-  <v-card class="mb-3" text="Practice : 4">
+  <v-card class="mb-3" text="Practice : 5">
 
   </v-card>
 
