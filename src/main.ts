@@ -11,6 +11,7 @@ import Login from "pages/Login.vue";
 import Todo from "pages/Todo.vue";
 import Library from "pages/Library.vue";
 import TodoList from "pages/TodoList.vue";
+import Practice from "pages/Practice.vue";
 
 
 const router = createRouter({
@@ -30,6 +31,9 @@ const router = createRouter({
                 },
                 {
                     path: '/todo-list', name: 'Todo List', component: TodoList
+                },
+                {
+                    path: '/practice', name: 'Practice', component: Practice
                 }
             ]
 
