@@ -43,10 +43,16 @@ const {isLoading, isError, data, error} = useQuery({
             lg="4"
         >
           <v-card v-if="textInput && todo.title.includes(textInput)" variant="tonal" class="inline-block m-3">
-              <span class="inline-block p-2" v-html="todo.title.replace(new RegExp(`${textInput.trim()}`, 'gi') , `<mark>${textInput}</mark>`)"></span>
+            <span class="inline-block py-2">
+              <template
+                    v-for="(child ,i) in todo.title.split(new RegExp(`(${textInput.trim()})`, 'gi'))">
+                <mark v-if="i%2 !== 0 ">{{ child }}</mark>
+                <span v-else>{{ child }}</span>
+              </template>
+            </span>
           </v-card>
           <v-card v-else variant="tonal" class="inline-block m-3">
-            <span class="inline-block p-2">{{ todo.title }}</span>
+            <span class="inline-block py-2">{{ todo.title }}</span>
           </v-card>
         </v-col>
       </v-row>
